@@ -311,27 +311,15 @@ def generate_select_fields(
                 select_list.append((sql_expr, alias, xpath))
             return
 
-        # Non-leaf: struct or secondary array
-        if node.is_unbounded:
-            # Secondary array → access first element with [0]
-            for child in node.children.values():
-                traverse(
-                    child,
-                    sql_parts=sql_parts + [f'{node.name}[0]'],
-                    alias_parts=alias_parts + [camel_to_snake(node.name)],
-                    xpath_parts=xpath_parts + [node.name],
-                    in_exploded=in_exploded,
-                )
-        else:
-            # Regular struct → traverse children
-            for child in node.children.values():
-                traverse(
-                    child,
-                    sql_parts=sql_parts + [node.name],
-                    alias_parts=alias_parts + [camel_to_snake(node.name)],
-                    xpath_parts=xpath_parts + [node.name],
-                    in_exploded=in_exploded,
-                )
+        # Non-leaf: struct or secondary array (kept as Spark array)
+        for child in node.children.values():
+            traverse(
+                child,
+                sql_parts=sql_parts + [node.name],
+                alias_parts=alias_parts + [camel_to_snake(node.name)],
+                xpath_parts=xpath_parts + [node.name],
+                in_exploded=in_exploded,
+            )
 
     # Start traversal from message root's children
     for child in msg_root.children.values():
