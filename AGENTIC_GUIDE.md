@@ -104,7 +104,22 @@ agent_topology:
 
 ---
 
-## 4. Key Rules for Agents
+## 4. Recommended Agent Skills (For Skill-Equipped CLIs)
+
+Equip agents with these specialized skills to maximize execution quality:
+
+| Skill | Primary Agent | Why It Matters |
+|---|---|---|
+| **`frontend-design`** | `style-craftsman`, `supervisor` | Prevents generic AI layouts; enforces typography hierarchy, authentic broadsheet styling, and zero clipping. |
+| **`gitlab-ci-patterns`** | `config-integrator`, `supervisor` | Ensures `.gitlab-ci.yml` stages (`build`, `test`, `pages`) follow caching and artifact best practices. |
+| **`webapp-testing`** | `test-automator` | Guides Playwright Python scripts for multi-viewport overflow gates (390px, 768px, 1440px) and screenshot audits. |
+| **`subagent-orchestrator`** | `supervisor` | Coordinates parallel worker subagents, context budgets, and deterministic handoffs. |
+| **`tdd-workflow`** | `test-automator`, `fixer` | Enforces Red-Green-Refactor loop for rapid defect isolation and resolution. |
+| **`powershell-windows`** | All workers (Windows) | Prevents shell syntax errors, path encoding issues, and command formatting pitfalls on Windows hosts. |
+
+---
+
+## 5. Key Rules for Agents
 
 1. **Zero Node/Webpack Build Tooling**: Keep all pages static HTML + Vanilla JS. Do not introduce npm, bundlers, or React unless explicitly requested.
 2. **Deterministic Selectors**: All dynamic elements use `data-config="path.to.key"` attributes. The `public/js/config-loader.js` script handles automatic DOM injection at runtime.
@@ -113,7 +128,7 @@ agent_topology:
 
 ---
 
-## 5. Quick Commands Reference
+## 6. Quick Commands Reference
 
 | Action | Command |
 |---|---|
