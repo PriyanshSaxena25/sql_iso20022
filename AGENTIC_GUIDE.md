@@ -57,36 +57,49 @@ This validates the YAML schema, compiles `public/data/site-config.json`, and ver
 
 ---
 
-## 3. Subagent Squad Definitions (For Multi-Agent Runners)
+## 3. Subagent Squad Definitions (Model & Thinking Tiers)
 
-If running in a parallel multi-agent environment (e.g. Antigravity CLI / Claude Squad), dispatch tasks using these specialized roles:
+When orchestrating in an agentic CLI harness (Claude Code, Antigravity CLI, Cursor Multi-Agent, Roo-Code), deploy using the following **Model & Thinking Tier Matrix**:
 
 ```yaml
-subagents:
-  - name: supervisor
-    model: 3.1 Pro / Claude 3.5 Sonnet
-    role: "Architect & Quality Gate Overseer"
-    prompt: "Verify acceptance criteria, validate YAML consistency, inspect test reports, and ensure no console errors or visual regressions exist across mobile (390px), tablet (768px), and desktop (1440px)."
+agent_topology:
+  supervisor:
+    model: "claude-3-opus (or latest Opus / Pro equivalent)"
+    thinking_tier: "max_effort"  # Maximum reasoning budget enabled
+    role: "Lead Solutions Architect & Quality Gate Overseer"
+    responsibilities:
+      - Enforce 100% acceptance criteria across all pages and configurations.
+      - Conduct multi-viewport visual audits (phone 390px, tablet 768px, desktop 1440px).
+      - Verify zero horizontal overflow, WCAG AA contrast, and >= 44px tap targets.
+      - Review and sign off on all code diffs before merging.
 
-  - name: config-integrator
-    model: 3.7 Flash / Claude 3.5 Haiku
-    role: "Data Product Metadata Specialist"
-    prompt: "Map target domain tables, SLAs, query samples, and team ownership into site-config.yml. Execute python src/build.py to ensure clean JSON compilation."
+  workers_default:
+    model: "claude-3-5-sonnet (or latest Sonnet equivalent)"
+    thinking_tier: "ultracode_thinking"  # Extended architectural reasoning for high-craft code
+    subagents:
+      - name: config-integrator
+        role: "Data Product Metadata Specialist"
+        prompt: "Map target domain tables, SLAs, query samples, and team ownership into site-config.yml. Execute python src/build.py to ensure clean JSON compilation."
 
-  - name: dbt-artifact-sync
-    model: 3.7 Flash / Claude 3.5 Haiku
-    role: "dbt Artifact Parser"
-    prompt: "Run scripts/extract-dbt-artifacts.py on dbt target/ files. Ensure model descriptions, column types, test assertions (unique, not_null, accepted_values), and tags map cleanly into public/data/schema.json."
+      - name: dbt-artifact-sync
+        role: "dbt Artifact Parser"
+        prompt: "Run scripts/extract-dbt-artifacts.py on dbt target/ files. Ensure model descriptions, column types, test assertions (unique, not_null, accepted_values), and tags map cleanly into public/data/schema.json."
 
-  - name: style-craftsman
-    model: 3.7 Flash / Claude 3.5 Haiku
-    role: "CSS & Design Token Engineer"
-    prompt: "Customize public/css/tokens.css for domain-specific accent colors (e.g. deep navy #1B4F72 or emerald #2D6A4F). Ensure responsive layout integrity and WCAG AA contrast compliance."
+      - name: coder-html
+        role: "Semantic HTML Architect"
+        prompt: "Maintain clean semantic HTML5 markup across all 5 pages. Ensure data-config binding attributes and accessible ARIA attributes are strictly intact."
 
-  - name: test-automator
-    model: 3.7 Flash / Claude 3.5 Haiku
-    role: "Playwright Regression Tester"
-    prompt: "Execute pytest tests/ -v. Verify zero horizontal overflow at all viewports, validate search filtering in Schema Explorer, and confirm dynamic config injection."
+      - name: style-craftsman
+        role: "CSS & Design Token Engineer"
+        prompt: "Maintain public/css/tokens.css, base.css, layout.css, and components.css. Enforce the Editorial Data broadsheet aesthetic with zero clipping and zero mobile overflow."
+
+      - name: test-automator
+        role: "Playwright QA & Verification Engineer"
+        prompt: "Execute pytest tests/ -v. Run automated visual regression gates across phone (390px), tablet (768px), and desktop (1440px), asserting 100% test pass rate."
+
+      - name: fixer
+        role: "Rapid Defect Resolver"
+        prompt: "Consume test failure logs and trace offending DOM/CSS nodes to apply minimal, high-precision surgical fixes without breaking existing desktop layouts."
 ```
 
 ---
