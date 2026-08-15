@@ -10,6 +10,15 @@
 dbt-dataproduct-pages/
 ├── site-config.yml              <-- [SINGLE SOURCE OF TRUTH] Edit this for any data product
 ├── .gitlab-ci.yml               <-- GitLab Pages CI/CD pipeline (Build -> Test -> Pages)
+├── .skills/                     <-- [BUNDLED AGENT SKILLS] Complete SKILL.md instruction suites
+│   ├── frontend-design/         <-- Design taste, typography & layout constraints
+│   ├── gitlab-ci-patterns/      <-- Multi-stage GitLab Pages pipeline patterns
+│   ├── webapp-testing/          <-- Playwright Python automated testing scripts
+│   ├── subagent-orchestrator/   <-- Multi-agent quota & mission coordinator
+│   ├── tdd-workflow/            <-- Test-driven development red-green-refactor cycle
+│   ├── powershell-windows/      <-- Windows shell execution reliability patterns
+│   ├── schema-markup/           <-- Semantic data dictionary schema validation
+│   └── writing-skills/          <-- Instruction formatting & skill authoring
 ├── src/
 │   └── build.py                 <-- Validates YAML & compiles public/data/site-config.json
 ├── scripts/
@@ -104,18 +113,20 @@ agent_topology:
 
 ---
 
-## 4. Recommended Agent Skills (For Skill-Equipped CLIs)
+## 4. Bundled Agent Skills Suite (In-Repo Knowledge Base)
 
-Equip agents with these specialized skills to maximize execution quality:
+This repository bundles complete `SKILL.md` skill instruction suites under `.skills/`. Any AI coding CLI tool can load them on-demand:
 
-| Skill | Primary Agent | Why It Matters |
+| Bundled Skill Path | Target Agent | Purpose & Capabilities |
 |---|---|---|
-| **`frontend-design`** | `style-craftsman`, `supervisor` | Prevents generic AI layouts; enforces typography hierarchy, authentic broadsheet styling, and zero clipping. |
-| **`gitlab-ci-patterns`** | `config-integrator`, `supervisor` | Ensures `.gitlab-ci.yml` stages (`build`, `test`, `pages`) follow caching and artifact best practices. |
-| **`webapp-testing`** | `test-automator` | Guides Playwright Python scripts for multi-viewport overflow gates (390px, 768px, 1440px) and screenshot audits. |
-| **`subagent-orchestrator`** | `supervisor` | Coordinates parallel worker subagents, context budgets, and deterministic handoffs. |
-| **`tdd-workflow`** | `test-automator`, `fixer` | Enforces Red-Green-Refactor loop for rapid defect isolation and resolution. |
-| **`powershell-windows`** | All workers (Windows) | Prevents shell syntax errors, path encoding issues, and command formatting pitfalls on Windows hosts. |
+| [`.skills/frontend-design/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/frontend-design/SKILL.md) | `style-craftsman`, `supervisor` | Prevents generic AI layouts; enforces typography hierarchy, authentic broadsheet styling, and zero clipping. |
+| [`.skills/gitlab-ci-patterns/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/gitlab-ci-patterns/SKILL.md) | `config-integrator`, `supervisor` | Ensures `.gitlab-ci.yml` stages (`build`, `test`, `pages`) follow caching and artifact best practices. |
+| [`.skills/webapp-testing/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/webapp-testing/SKILL.md) | `test-automator` | Native Playwright Python scripts for multi-viewport overflow gates (390px, 768px, 1440px) and screenshot audits. |
+| [`.skills/subagent-orchestrator/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/subagent-orchestrator/SKILL.md) | `supervisor` | Coordinates parallel worker subagents, context budgets, and deterministic handoffs. |
+| [`.skills/tdd-workflow/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/tdd-workflow/SKILL.md) | `test-automator`, `fixer` | Enforces Red-Green-Refactor cycle for rapid defect isolation and regression-free fixes. |
+| [`.skills/powershell-windows/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/powershell-windows/SKILL.md) | All workers (Windows hosts) | Prevents shell syntax errors, path encoding issues, and command formatting pitfalls on Windows. |
+| [`.skills/schema-markup/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/schema-markup/SKILL.md) | `dbt-artifact-sync` | Formats and validates structured JSON-LD and semantic data dictionary payloads. |
+| [`.skills/writing-skills/SKILL.md`](file:///D:/dbt-dataproduct-pages/.skills/writing-skills/SKILL.md) | `supervisor` | Standardizes custom agent persona guidelines and operational instructions. |
 
 ---
 
